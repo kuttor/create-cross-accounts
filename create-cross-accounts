@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+"""
+create-cross-accounts - automates cross-account setup process
+
+Usage:
+  create-cross-accounts -u <username> -a <account>
+  create-cross-accounts [ -h | --help | --version ]
+
+Options:
+  --version                     Show version.
+  -h --help                     Show this screen.
+  -ca --xaccount cross-account  Specifies cross-account
+  -a --account ACCOUNT          Specifies AWS Account
+"""
+from boto3 import client
+from docopt import DocoptExit, docopt
+import json
+
+__author__ = "Andrew Kuttor "
+__maintainer__ = "Andrew Kuttor"
+__email__ = "akuttor@gmail.com"
+__version__ = "0.1.0"
+
+
+def main():
+    print None
+
+def confirm():
+  while True:
+    text = raw_input("Confirm? (Yes)/(No)")
+    if text.lower != "yes" or text.lower !="y":
+      break
+
+
+def create_role():
+
+    # opens target policy doc and removes newline
+    with open("policy.json", "r") as policy_doc:
+    template = policy_doc.read().replace('\n', '')
+
+    # creates cross account role.
+    iam = client('iam').create_role(
+        Path="string",
+        RoleName='{0}.xaccess'.format(aws_account_nickname),
+        AssumeRolePolicyDocuments='string'
+    )
+
+    return iam
+
+
+def create_user(args):
+    username = args['<username>']
+    account = args['<account>']
+
+    iam = resource('iam').User('name')
+    response = iam.create(Path='arn:aws:iam::{0}:{1}'.format(username, account))
+    return response
