@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """
 create-cross-accounts - automates cross-account setup process
 
@@ -12,10 +13,12 @@ Options:
   -ca --xaccount cross-account  Specifies cross-account
   -a --account ACCOUNT          Specifies AWS Account
 """
+
 from boto3 import client
 from docopt import DocoptExit, docopt
 import json
 
+# About
 __author__ = "Andrew Kuttor "
 __maintainer__ = "Andrew Kuttor"
 __email__ = "akuttor@gmail.com"
@@ -25,6 +28,7 @@ __version__ = "0.1.0"
 def main():
     print None
 
+# creates confirmation logic
 def confirm():
   while True:
     text = raw_input("Confirm? (Yes)/(No)")
